@@ -10,7 +10,7 @@
 # @raycast.argument1 { "type": "text", "placeholder": "Enter JSON" }
 
 # Documentation:
-# @raycast.description Format JSON using jq
+# @raycast.description Format JSON using jq. You can also use this to unescape JSON strings.
 
 if ! command -v jq &> /dev/null; then
     echo "Error: jq is not installed. Please install it first."
