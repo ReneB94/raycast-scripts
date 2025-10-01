@@ -19,6 +19,16 @@ fi
 
 json_input="$1"
 
+if [[ "$json_input" =~ ^\".*\"$ ]]; then
+    json_input=$(echo "$json_input" | sed 's/^"//' | sed 's/"$//')
+fi
+
+# Check if the input is an escaped JSON string (starts with "{\)
+if [[ "$json_input" =~ ^\{\\.* ]]; then
+    # Remove surrounding quotes and replace \" with "
+    json_input=$(echo "$json_input" | sed 's/\\"/"/g')
+fi
+
 formatted_json=$(echo "$json_input" | jq '.')
 
 if [ $? -eq 0 ]; then
